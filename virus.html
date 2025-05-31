@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Descriptografador 2.1</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: Arial, sans-serif;
+      background: url('') repeat;
+      background-size: cover;
+      color: rgb(221, 18, 18);
+    }
+
+    .window {
+      max-width: 900px;
+      margin: auto;
+      margin-top: 40px;
+      border: 4px solid #004ea1;
+      background: #8b2d21;
+      box-shadow: 0 0 20px black;
+      padding-bottom: 20px;
+    }
+
+    .title-bar {
+      background: #0064c8;
+      color: white;
+      font-weight: bold;
+      padding: 8px 12px;
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .left, .right {
+      flex: 1 1 300px;
+      padding: 20px;
+    }
+
+    .lock-icon img {
+      width: 180px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      filter: drop-shadow(0 0 5px black);
+    }
+
+    .alert-offer {
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .timer {
+      font-size: 32px;
+      text-align: center;
+      margin: 15px 0;
+    }
+
+    .alert-text {
+      text-align: center;
+      font-weight: bold;
+      color: yellow;
+      margin-top: 10px;
+      white-space: pre-line;
+      font-size: 18px;
+    }
+
+    .price {
+      text-align: center;
+      font-size: 22px;
+      color: yellow;
+      margin: 35px 0;
+    }
+
+    .right h1 {
+      font-size: 26px;
+      color: white;
+    }
+
+    .section {
+      background: white;
+      color: black;
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .key-input {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .key-input input {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    .key-input button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .payments {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .payments img {
+      margin: 0 10px;
+      height: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .title-bar {
+        text-align: center;
+      }
+
+      .left, .right {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="window">
+    <div class="title-bar">Descriptografador 2.1</div>
+    <div class="content">
+      <div class="left">
+        <div class="lock-icon">
+          <img src="https://misterioso43.github.io/virusprank/fake-virus.png" alt="Oferta Falsa">
+        </div>
+
+        <div class="timer" id="countdown">60:00</div>
+
+        <div class="alert-text">
+          ATENÇÃO!<br>Seu celular foi infectado com um vírus!
+        </div>
+
+        <div class="price">
+          <del>R$ 2.500</del><br>só hoje<br><strong style="font-size: 26px;">R$ 1.999 PROMOÇÃO!</strong>
+        </div>
+
+        <div style="text-align:center; font-size: 14px;">Siga as instruções abaixo imediatamente</div>
+      </div>
+
+      <div class="right">
+        <h1>Más notícias, seu celular foi criptografado!</h1>
+        <div class="section">
+          <h3>O que aconteceu com seu celular?</h3>
+          <p>Todos os arquivos, fotos, vídeos, aplicativos e até o sistema do seu celular foram criptografados. Você não poderá acessar nada até que faça o pagamento.</p>
+          <p>Você tem <strong>1 hora</strong> para resolver isso, ou seus dados serão apagados permanentemente. Desligar o celular ou reiniciar também resultará em perda total.</p>
+
+          <h3>O que você pode fazer?</h3>
+          <p>Não adianta tentar restaurar sozinho. Usamos criptografia avançada. Apenas pagando você receberá a chave de desbloqueio.</p>
+          <p>Após o pagamento, você receberá um código que deve ser inserido no campo abaixo e clicar em <strong>Descriptografar</strong>.</p>
+
+          <h3>Isso é legal?</h3>
+          <p>Estamos dentro da lei. Esta é uma ação autorizada contra usuários que não seguem as normas de segurança digital. Emitimos recibo após pagamento.</p>
+        </div>
+
+        <div class="key-input">
+          <input type="text" placeholder="Sua chave...">
+          <button>Descriptografar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Contador regressivo de 60 minutos
+    let duration = 60 * 60;
+    const countdown = document.getElementById('countdown');
+
+    function updateTimer() {
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      countdown.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      if (duration > 0) {
+        duration--;
+        setTimeout(updateTimer, 1000);
+      }
+    }
+
+    updateTimer();
+  </script>
+</body>
+</html>
