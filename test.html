@@ -1,29 +1,187 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vírus Detectado!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Decryptor 2.1</title>
   <style>
-    body {
-      background-color: red;
-      color: white;
-      text-align: center;
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
       font-family: Arial, sans-serif;
-      padding-top: 100px;
+      background: url('https://i.imgur.com/7yGZkRv.gif') repeat;
+      background-size: cover;
+      color: white;
     }
-    .warning {
-      font-size: 2em;
-      animation: blink 1s infinite;
+
+    .window {
+      max-width: 900px;
+      margin: auto;
+      margin-top: 40px;
+      border: 4px solid #004ea1;
+      background: #8b2d21;
+      box-shadow: 0 0 20px black;
+      padding-bottom: 20px;
     }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+
+    .title-bar {
+      background: #0064c8;
+      color: white;
+      font-weight: bold;
+      padding: 8px 12px;
+      font-size: 16px;
+      font-family: 'Courier New', monospace;
+    }
+
+    .content {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .left, .right {
+      flex: 1 1 300px;
+      padding: 20px;
+    }
+
+    .lock-icon {
+      font-size: 80px;
+      text-align: center;
+    }
+
+    .timer {
+      font-size: 32px;
+      text-align: center;
+      margin: 10px 0;
+    }
+
+    .price {
+      text-align: center;
+      font-size: 22px;
+      color: yellow;
+      margin: 10px 0;
+    }
+
+    .right h1 {
+      font-size: 26px;
+      color: white;
+    }
+
+    .section {
+      background: white;
+      color: black;
+      padding: 15px;
+      border-radius: 8px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .key-input {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .key-input input {
+      padding: 10px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    .key-input button {
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .payments {
+      text-align: center;
+      margin-top: 15px;
+    }
+
+    .payments img {
+      margin: 0 10px;
+      height: 32px;
+    }
+
+    @media (max-width: 768px) {
+      .content {
+        flex-direction: column;
+      }
+
+      .title-bar {
+        text-align: center;
+      }
+
+      .left, .right {
+        padding: 10px;
+      }
     }
   </style>
 </head>
 <body>
-  <h1 class="warning">⚠️ ALERTA DE VÍRUS ⚠️</h1>
-  <p>Seu dispositivo foi infectado! Toque para remover o vírus!</p>
-  <button onclick="alert('Mentira! kkkk')">Remover Vírus</button>
+  <div class="window">
+    <div class="title-bar">Decryptor 2.1</div>
+    <div class="content">
+      <div class="left">
+        <div class="lock-icon">🔒💀</div>
+        <div style="text-align:center; font-weight: bold; color: yellow;">
+          Hurry!<br>Your files will be permanently deleted in:
+        </div>
+        <div class="timer" id="countdown">60:00</div>
+        <div class="price">
+          <del>$500</del><br>only today<br><strong style="font-size: 26px;">$399 SALE!</strong>
+        </div>
+        <div style="text-align:center; font-size: 14px;">Please read the instructions</div>
+      </div>
+      <div class="right">
+        <h1>Bad news, your files have been encrypted!</h1>
+        <div class="section">
+          <h3>What Happened To This Computer?</h3>
+          <p>All your personal data, photos, videos, work files, including your operating system have been encrypted and can be accessed again if you pay a ransom. You can't access anything on this machine but this screen.</p>
+          <p>You have <strong>one hour</strong> to pay the prize, otherwise you will no longer be able to decrypt them. Powering off or restarting your computer will also destroy your files.</p>
+
+          <h3>What Can You Do?</h3>
+          <p>You might be looking for a way to recover your files but don't waste your time. We use an unbreakable encryption so nobody can restore your files without a decryption key.</p>
+          <p>You can purchase your key using one of the payment methods listed below. You will get a code to paste in the input field and click <strong>Decrypt</strong>.</p>
+
+          <h3>Is This Legal?</h3>
+          <p>This procedure is absolutely legal. We are a certified company specializing in digital identity theft and ransomware solutions. We will send you an invoice.</p>
+        </div>
+        <div class="key-input">
+          <input type="text" placeholder="Your key...">
+          <button>Decrypt</button>
+        </div>
+        <div class="payments">
+          <img src="https://i.imgur.com/bhGjF8F.png" alt="Monopoly Money">
+          <img src="https://i.imgur.com/Z6x3MEq.png" alt="PayPrick">
+          <img src="https://i.imgur.com/f7Z1vXL.png" alt="KidneyPay">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Contador regressivo de 60 minutos
+    let duration = 60 * 60; // 60 minutos
+    const countdown = document.getElementById('countdown');
+
+    function updateTimer() {
+      const minutes = Math.floor(duration / 60);
+      const seconds = duration % 60;
+      countdown.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      if (duration > 0) {
+        duration--;
+        setTimeout(updateTimer, 1000);
+      }
+    }
+
+    updateTimer();
+  </script>
 </body>
 </html>
