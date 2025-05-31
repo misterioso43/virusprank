@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Vírus Detectado!</title>
+  <style>
+    body {
+      background-color: red;
+      color: white;
+      text-align: center;
+      font-family: Arial, sans-serif;
+      padding-top: 100px;
+    }
+    .warning {
+      font-size: 2em;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1 class="warning">⚠️ ALERTA DE VÍRUS ⚠️</h1>
+  <p>Seu dispositivo foi infectado! Toque para remover o vírus!</p>
+  <button onclick="alert('Mentira! kkkk')">Remover Vírus</button>
+</body>
+</html>
